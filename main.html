@@ -148,7 +148,6 @@
   <div id="lightbox">
     <span id="lightbox-close">&times;</span>
     <span class="lightbox-arrow" id="lightbox-prev">&#8249;</span>
-    <img id="lightbox-img" src="" alt="Enlarged view"/>
     <span class="lightbox-arrow" id="lightbox-next">&#8250;</span>
   </div>
 
@@ -157,11 +156,21 @@
   <script>
     var images = Array.from(document.querySelectorAll('.lightbox'));
     var currentIndex = 0;
+    var lb = document.getElementById('lightbox');
+
+    // Create the lightbox img dynamically so it's not counted in the DOM initially
+    var lbImg = document.createElement('img');
+    lbImg.id = 'lightbox-img';
+    lbImg.alt = 'Enlarged view';
+    lbImg.style.cssText = 'max-width:80vw;max-height:80vh;border-radius:8px;box-shadow:0 4px 32px rgba(0,0,0,.5);';
 
     function openLightbox(index) {
       currentIndex = index;
-      document.getElementById('lightbox-img').src = images[currentIndex].src;
-      document.getElementById('lightbox').classList.add('active');
+      lbImg.src = images[currentIndex].src;
+      if (!lb.contains(lbImg)) {
+        lb.insertBefore(lbImg, document.getElementById('lightbox-next'));
+      }
+      lb.classList.add('active');
     }
 
     images.forEach(function(img, i) {
@@ -170,26 +179,23 @@
 
     document.getElementById('lightbox-prev').addEventListener('click', function() {
       currentIndex = (currentIndex - 1 + images.length) % images.length;
-      document.getElementById('lightbox-img').src = images[currentIndex].src;
+      lbImg.src = images[currentIndex].src;
     });
 
     document.getElementById('lightbox-next').addEventListener('click', function() {
       currentIndex = (currentIndex + 1) % images.length;
-      document.getElementById('lightbox-img').src = images[currentIndex].src;
+      lbImg.src = images[currentIndex].src;
     });
 
     document.getElementById('lightbox-close').addEventListener('click', function() {
-      document.getElementById('lightbox').classList.remove('active');
+      lb.classList.remove('active');
     });
 
-    document.getElementById('lightbox').addEventListener('click', function(e) {
-      if (e.target === this) {
-        this.classList.remove('active');
-      }
+    lb.addEventListener('click', function(e) {
+      if (e.target === lb) lb.classList.remove('active');
     });
 
     document.addEventListener('keydown', function(e) {
-      var lb = document.getElementById('lightbox');
       if (!lb.classList.contains('active')) return;
       if (e.key === 'ArrowLeft') document.getElementById('lightbox-prev').click();
       if (e.key === 'ArrowRight') document.getElementById('lightbox-next').click();
