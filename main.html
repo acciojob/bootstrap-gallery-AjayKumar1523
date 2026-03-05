@@ -1,16 +1,183 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cards Gallery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
+  <style>
+    body { background: #f8f9fa; padding: 2rem 1rem; }
+
+    .card {
+      border-radius: 12px !important;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    .card-img-top {
+      cursor: pointer;
+      height: 160px;
+      object-fit: cover;
+      transition: opacity 0.2s;
+    }
+    .card-img-top:hover { opacity: 0.85; }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    #lightbox.active { display: flex; }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 8px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+    }
+    #lightbox-close {
+      position: absolute;
+      top: 1rem; right: 1.5rem;
+      font-size: 2.5rem;
+      color: #fff;
+      cursor: pointer;
+      line-height: 1;
+      user-select: none;
+    }
+  </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
 
+  <div class="container">
+    <h2 class="text-center mb-4">Cards Gallery</h2>
+
+    <div class="row">
+
+      <div class="col-sm-6 col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/gallery1/400/300" class="card-img-top" alt="Image 1"/>
+          <div class="card-body text-center">
+            <h6 class="card-title">Mountain Vista</h6>
+            <p class="card-text">A breathtaking view of towering mountain peaks.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/gallery2/400/300" class="card-img-top" alt="Image 2"/>
+          <div class="card-body text-center">
+            <h6 class="card-title">Ocean Breeze</h6>
+            <p class="card-text">Calm blue waters stretching to the horizon.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/gallery3/400/300" class="card-img-top" alt="Image 3"/>
+          <div class="card-body text-center">
+            <h6 class="card-title">Forest Path</h6>
+            <p class="card-text">A serene trail winding through ancient woods.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/gallery4/400/300" class="card-img-top" alt="Image 4"/>
+          <div class="card-body text-center">
+            <h6 class="card-title">Desert Dunes</h6>
+            <p class="card-text">Golden sand dunes under a blazing sun.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/gallery5/400/300" class="card-img-top" alt="Image 5"/>
+          <div class="card-body text-center">
+            <h6 class="card-title">City Lights</h6>
+            <p class="card-text">A glittering skyline illuminating the night sky.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/gallery6/400/300" class="card-img-top" alt="Image 6"/>
+          <div class="card-body text-center">
+            <h6 class="card-title">Snowy Peaks</h6>
+            <p class="card-text">Pristine white snow caps on majestic summits.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/gallery7/400/300" class="card-img-top" alt="Image 7"/>
+          <div class="card-body text-center">
+            <h6 class="card-title">Tropical Beach</h6>
+            <p class="card-text">Crystal clear water lapping on white sand shores.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/gallery8/400/300" class="card-img-top" alt="Image 8"/>
+          <div class="card-body text-center">
+            <h6 class="card-title">Autumn Leaves</h6>
+            <p class="card-text">A vibrant tapestry of red, orange, and gold.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="https://picsum.photos/seed/gallery9/400/300" class="card-img-top" alt="Image 9"/>
+          <div class="card-body text-center">
+            <h6 class="card-title">Lakeside Calm</h6>
+            <p class="card-text">Peaceful reflections on a still mountain lake.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <span id="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Enlarged view"/>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.querySelectorAll('.card-img-top').forEach(function(img) {
+      img.addEventListener('click', function() {
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox').classList.add('active');
+      });
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', function() {
+      document.getElementById('lightbox').classList.remove('active');
+    });
+
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('active');
+      }
+    });
+  </script>
 </body>
-
 </html>
