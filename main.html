@@ -37,8 +37,8 @@
     }
     #lightbox.active { display: flex; }
     #lightbox img {
-      max-width: 90vw;
-      max-height: 85vh;
+      max-width: 80vw;
+      max-height: 80vh;
       border-radius: 8px;
       box-shadow: 0 4px 32px rgba(0,0,0,0.5);
     }
@@ -51,6 +51,27 @@
       line-height: 1;
       user-select: none;
     }
+    .lightbox-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.4);
+      color: #fff;
+      font-size: 1.8rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .lightbox-arrow:hover { background: rgba(255,255,255,0.3); }
+    #lightbox-prev { left: 1.2rem; }
+    #lightbox-next { right: 1.2rem; }
   </style>
 </head>
 <body>
@@ -156,17 +177,35 @@
   <!-- Lightbox -->
   <div id="lightbox">
     <span id="lightbox-close">&times;</span>
+    <span class="lightbox-arrow" id="lightbox-prev">&#8249;</span>
     <img id="lightbox-img" src="" alt="Enlarged view"/>
+    <span class="lightbox-arrow" id="lightbox-next">&#8250;</span>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
   <script>
-    document.querySelectorAll('.card-img-top').forEach(function(img) {
-      img.addEventListener('click', function() {
-        document.getElementById('lightbox-img').src = img.src;
-        document.getElementById('lightbox').classList.add('active');
-      });
+    var images = Array.from(document.querySelectorAll('.card-img-top'));
+    var currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      document.getElementById('lightbox-img').src = images[currentIndex].src;
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    images.forEach(function(img, i) {
+      img.addEventListener('click', function() { openLightbox(i); });
+    });
+
+    document.getElementById('lightbox-prev').addEventListener('click', function() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      document.getElementById('lightbox-img').src = images[currentIndex].src;
+    });
+
+    document.getElementById('lightbox-next').addEventListener('click', function() {
+      currentIndex = (currentIndex + 1) % images.length;
+      document.getElementById('lightbox-img').src = images[currentIndex].src;
     });
 
     document.getElementById('lightbox-close').addEventListener('click', function() {
@@ -177,6 +216,14 @@
       if (e.target === this) {
         this.classList.remove('active');
       }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      var lb = document.getElementById('lightbox');
+      if (!lb.classList.contains('active')) return;
+      if (e.key === 'ArrowLeft') document.getElementById('lightbox-prev').click();
+      if (e.key === 'ArrowRight') document.getElementById('lightbox-next').click();
+      if (e.key === 'Escape') lb.classList.remove('active');
     });
   </script>
 </body>
