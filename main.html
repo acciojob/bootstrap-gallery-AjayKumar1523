@@ -83,7 +83,7 @@
 
       <div class="col-sm-6 col-md-4 mb-4">
         <div class="card h-100">
-          <img src="https://picsum.photos/seed/gallery1/400/300" class="card-img-top" alt="Image 1"/>
+          <img src="https://picsum.photos/seed/gallery1/400/300" class="card-img-top lightbox" alt="Image 1"/>
           <div class="card-body text-center">
             <h6 class="card-title">Mountain Vista</h6>
             <p class="card-text">A breathtaking view of towering mountain peaks.</p>
@@ -93,7 +93,7 @@
 
       <div class="col-sm-6 col-md-4 mb-4">
         <div class="card h-100">
-          <img src="https://picsum.photos/seed/gallery2/400/300" class="card-img-top" alt="Image 2"/>
+          <img src="https://picsum.photos/seed/gallery2/400/300" class="card-img-top lightbox" alt="Image 2"/>
           <div class="card-body text-center">
             <h6 class="card-title">Ocean Breeze</h6>
             <p class="card-text">Calm blue waters stretching to the horizon.</p>
@@ -103,7 +103,7 @@
 
       <div class="col-sm-6 col-md-4 mb-4">
         <div class="card h-100">
-          <img src="https://picsum.photos/seed/gallery3/400/300" class="card-img-top" alt="Image 3"/>
+          <img src="https://picsum.photos/seed/gallery3/400/300" class="card-img-top lightbox" alt="Image 3"/>
           <div class="card-body text-center">
             <h6 class="card-title">Forest Path</h6>
             <p class="card-text">A serene trail winding through ancient woods.</p>
@@ -113,7 +113,7 @@
 
       <div class="col-sm-6 col-md-4 mb-4">
         <div class="card h-100">
-          <img src="https://picsum.photos/seed/gallery4/400/300" class="card-img-top" alt="Image 4"/>
+          <img src="https://picsum.photos/seed/gallery4/400/300" class="card-img-top lightbox" alt="Image 4"/>
           <div class="card-body text-center">
             <h6 class="card-title">Desert Dunes</h6>
             <p class="card-text">Golden sand dunes under a blazing sun.</p>
@@ -123,7 +123,7 @@
 
       <div class="col-sm-6 col-md-4 mb-4">
         <div class="card h-100">
-          <img src="https://picsum.photos/seed/gallery5/400/300" class="card-img-top" alt="Image 5"/>
+          <img src="https://picsum.photos/seed/gallery5/400/300" class="card-img-top lightbox" alt="Image 5"/>
           <div class="card-body text-center">
             <h6 class="card-title">City Lights</h6>
             <p class="card-text">A glittering skyline illuminating the night sky.</p>
@@ -133,40 +133,10 @@
 
       <div class="col-sm-6 col-md-4 mb-4">
         <div class="card h-100">
-          <img src="https://picsum.photos/seed/gallery6/400/300" class="card-img-top" alt="Image 6"/>
+          <img src="https://picsum.photos/seed/gallery6/400/300" class="card-img-top lightbox" alt="Image 6"/>
           <div class="card-body text-center">
             <h6 class="card-title">Snowy Peaks</h6>
             <p class="card-text">Pristine white snow caps on majestic summits.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="https://picsum.photos/seed/gallery7/400/300" class="card-img-top" alt="Image 7"/>
-          <div class="card-body text-center">
-            <h6 class="card-title">Tropical Beach</h6>
-            <p class="card-text">Crystal clear water lapping on white sand shores.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="https://picsum.photos/seed/gallery8/400/300" class="card-img-top" alt="Image 8"/>
-          <div class="card-body text-center">
-            <h6 class="card-title">Autumn Leaves</h6>
-            <p class="card-text">A vibrant tapestry of red, orange, and gold.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="https://picsum.photos/seed/gallery9/400/300" class="card-img-top" alt="Image 9"/>
-          <div class="card-body text-center">
-            <h6 class="card-title">Lakeside Calm</h6>
-            <p class="card-text">Peaceful reflections on a still mountain lake.</p>
           </div>
         </div>
       </div>
@@ -185,7 +155,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
   <script>
-    var images = Array.from(document.querySelectorAll('.card-img-top'));
+    var images = Array.from(document.querySelectorAll('.lightbox'));
     var currentIndex = 0;
 
     function openLightbox(index) {
